@@ -1,0 +1,51 @@
+{
+  "id": "488473",
+  "name": "Lover",
+  "font_family": "element-icons",
+  "css_prefix_text": "el-icon-",
+  "description": "H5课设element-ui配合使用",
+  "glyphs": [
+    {
+      "icon_id": "141407",
+      "name": "185080 - bubble love streamline talk",
+      "font_class": "185080bubblelovestreamlinetalk",
+      "unicode": "e645",
+      "unicode_decimal": 58949
+    },
+    {
+      "icon_id": "569294",
+      "name": "svg_many_love",
+      "font_class": "svgmanylove",
+      "unicode": "e680",
+      "unicode_decimal": 59008
+    },
+    {
+      "icon_id": "1601051",
+      "name": "love",
+      "font_class": "love",
+      "unicode": "e62c",
+      "unicode_decimal": 58924
+    },
+    {
+      "icon_id": "10172992",
+      "name": "love",
+      "font_class": "love1",
+      "unicode": "e8ca",
+      "unicode_decimal": 59594
+    },
+    {
+      "icon_id": "10566445",
+      "name": "valentine_008-email-love-message-send",
+      "font_class": "valentine_-email-love-message-send",
+      "unicode": "e762",
+      "unicode_decimal": 59234
+    },
+    {
+      "icon_id": "10566452",
+      "name": "valentine_006-email-love-message-send",
+      "font_class": "valentine_-email-love-message-send1",
+      "unicode": "e763",
+      "unicode_decimal": 59235
+    }
+  ]
+}
