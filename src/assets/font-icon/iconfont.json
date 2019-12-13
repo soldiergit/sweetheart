@@ -27,6 +27,20 @@
       "unicode_decimal": 58924
     },
     {
+      "icon_id": "2040682",
+      "name": "登录",
+      "font_class": "denglu",
+      "unicode": "e996",
+      "unicode_decimal": 59798
+    },
+    {
+      "icon_id": "6115824",
+      "name": "登出",
+      "font_class": "logout",
+      "unicode": "e610",
+      "unicode_decimal": 58896
+    },
+    {
       "icon_id": "10172992",
       "name": "love",
       "font_class": "love1",

@@ -4,12 +4,12 @@
     <div class="video-container">
       <!--视频上方显示内容-->
       <div :style="fixStyle" class="filter">
-        <el-link href="https://element.eleme.io" target="_blank">默认链接</el-link>
+        <Qiuxiang/>
       </div>
-      <!--autoplay：自动播放 loop：当媒介文件完成播放后再次开始播放 muted：静音  -->
+      <!--autoplay：自动播放 loop：当媒介文件完成播放后再次开始播放 muted：静音  v-on:指令监听DOM事件，并在触发时运行一些JavaScript代码  -->
       <video :style="fixStyle" autoplay loop muted class="fillWidth" v-on:canplay="canplay">
         <!--视频的路径必须这么写，否则视频不会播放-->
-        <source src="../../assets/video/dashan.mp4" type="video/mp4"/>
+        <source src="../../assets/video/RomaticSunset.mp4" type="video/mp4"/>
         浏览器不支持 video 标签，建议升级浏览器。
         <source src="../../assets/video/dashan.mp4" type="video/webm"/>
         浏览器不支持 video 标签，建议升级浏览器。
@@ -23,6 +23,7 @@
 </template>
 
 <script>
+import Qiuxiang from './Qiuxiang'
 import PATH_TO_JPEG from '@/assets/images/logo.png'
 export default {
   name: 'VideoBackground',
@@ -32,6 +33,9 @@ export default {
       videoCanPlay: false,
       fixStyle: ''
     }
+  },
+  components: {
+    Qiuxiang
   },
   methods: {
     canplay () {

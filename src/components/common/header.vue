@@ -1,6 +1,7 @@
 <template>
   <div id="content">
     <el-row :gutter="20">
+      <!--vue单页应用实现监听页面滚动的距离 https://blog.csdn.net/MRSLLLL_/article/details/100676092-->
       <!--左-->
       <el-col :span="4">
         <div class="grid-content bg-purple">
@@ -19,17 +20,23 @@
             background-color="#545c64"
             text-color="#fff"
             active-text-color="#ffd04b">
-            <el-submenu index="2">
-              <template slot="title"><i class="el-icon-s-platform"></i>我的工作台</template>
-              <el-menu-item index="1-1" @click="loginSubmit()">登入后台</el-menu-item>
-              <el-menu-item index="1-2">选项2</el-menu-item>
-            </el-submenu>
+            <template v-if="this.$store.state.logonStatus">
+              <el-submenu index="2">
+                  <template slot="title"><span class="menuText"><i class="el-icon-user-solid"></i>用户</span></template>
+                  <el-menu-item index="1-2" @click="logoutSubmit()">
+                    <span class="menuText"><i class="el-icon-logout"></i>退出</span>
+                  </el-menu-item>
+              </el-submenu>
+            </template>
+            <template v-else>
+              <el-menu-item index="1-1" @click="loginSubmit()"><span class="menuText"><i class="el-icon-denglu"></i>登录</span></el-menu-item>
+            </template>
             <el-submenu index="5">
               <template slot="title"><i class="el-icon-s-tools"></i>设置</template>
               <el-menu-item index="2-1" @click="audioplay">开启音乐</el-menu-item>
               <el-menu-item index="2-1" @click="audiostop">关闭音乐</el-menu-item>
             </el-submenu>
-            <el-menu-item index="4"><a href="#" @click="drawer = true"><i class="el-icon-picture"></i>相册</a></el-menu-item>
+            <el-menu-item index="4"><a href="#" @click="album"><i class="el-icon-picture"></i>相册</a></el-menu-item>
             <el-menu-item index="3"><a href="#" @click="home"><i class="el-icon-s-home"></i>首页</a></el-menu-item>
           </el-menu>
         </div>
@@ -64,6 +71,9 @@ export default {
     home () {
       this.$router.push('/')
     },
+    album () {
+      this.$router.push('/album')
+    },
     audioplay () {
       let btnAdo = document.getElementById('eventAudio')
       btnAdo.play()
@@ -77,6 +87,9 @@ export default {
       this.$nextTick(() => {
         this.$refs.login.init()
       })
+    },
+    logoutSubmit () {
+      this.$store.commit('logout')
     },
     moveImg (e) {
       let odiv = e.target // 获取目标元素
@@ -149,5 +162,8 @@ export default {
     display: flex;
     margin-bottom: 0px;
     padding: 0px 0px ;
+  }
+  .menuText:hover{
+    color: #67C23A;
   }
 </style>

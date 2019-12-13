@@ -10,7 +10,7 @@
           <el-main>：主要区域容器。
           <el-footer>：底栏容器。
       -->
-      <video-background/>
+      <video-background v-if="this.$store.state.showVideoBackground"/>
       <el-header>
         <lover-header/>
       </el-header>

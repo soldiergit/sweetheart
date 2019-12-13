@@ -1,0 +1,6 @@
+vuex管理全局变量、全局方法 https://vuex.vuejs.org/zh/
+
+2019-12-12 09:02:31
+
+vuex是一个专门为vue.js设计的集中式状态管理架构，用来管理公用属性。
+https://segmentfault.com/a/1190000015782272

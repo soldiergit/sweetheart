@@ -59,4 +59,10 @@
 5.运行容器： docker run --name lover-vue-[datatime] -p 8003:8003 <imageId>
 ```
 
+#### 软件架构
+###### 软件架构说明
+vue + element UI
+######技术
+vue+webpack+element-ui+vuex
+
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).

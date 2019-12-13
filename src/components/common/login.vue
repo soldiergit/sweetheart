@@ -26,7 +26,7 @@
           <el-form-item>
             <el-row :gutter="38">
               <el-col :span="12">
-                <el-button class="login-btn-submit" type="primary" :loading="loginLoading">
+                <el-button class="login-btn-submit" type="primary" @click="dataFormSubmit()" :loading="loginLoading">
                   登录
                 </el-button>
               </el-col>
@@ -40,7 +40,7 @@
 </template>
 
 <script>
-
+import captchaImg from '@/assets/images/captcha.jpg'
 export default {
   data () {
     return {
@@ -64,7 +64,7 @@ export default {
           { required: true, message: '验证码不能为空', trigger: 'blur' }
         ]
       },
-      captchaPath: '@/assets/images/logo.png'
+      captchaPath: captchaImg
     }
   },
   components: {
@@ -72,6 +72,18 @@ export default {
   methods: {
     init () {
       this.visible = true
+    },
+    // 提交表单
+    dataFormSubmit () {
+      this.$refs['dataForm'].validate((valid) => {
+        if (valid) {
+          this.loginLoading = true
+          this.dataForm.captcha = ''
+          this.$store.commit('signIn')
+          this.visible = false
+          this.loginLoading = false
+        }
+      })
     }
   }
 }

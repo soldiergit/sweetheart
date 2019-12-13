@@ -8,6 +8,8 @@ import 'element-ui/lib/theme-chalk/index.css'
 import './assets/css/style.css'
 // 自定义图标
 import './assets/font-icon/iconfont.css'
+// vuex管理全局变量、全局方法
+import store from './store/store'
 
 Vue.use(ElementUI)
 
@@ -17,6 +19,7 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   router,
+  store, // 使用store
   components: { App },
   template: '<App/>'
 })
