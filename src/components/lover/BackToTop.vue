@@ -1,9 +1,11 @@
 <template>
   <transition :name="transitionName">
     <div v-show="visible" :style="customStyle" class="back-to-ceiling" @click="backToTop">
+      <!--直接在html页面中添加SVG定义代码-->
       <svg width="16" height="16" viewBox="0 0 17 17" xmlns="http://www.w3.org/2000/svg" class="Icon Icon--backToTopArrow" aria-hidden="true" style="height: 16px; width: 16px;">
         <title>回到顶部</title>
         <g>
+          <!--path标签定义SVG路径，代表一个可以被填充的形状的外形轮廓 P228-->
           <path d="M12.036 15.59c0 .55-.453.995-.997.995H5.032c-.55 0-.997-.445-.997-.996V8.584H1.03c-1.1 0-1.36-.633-.578-1.416L7.33.29c.39-.39 1.026-.385 1.412 0l6.878 6.88c.782.78.523 1.415-.58 1.415h-3.004v7.004z" fill-rule="evenodd"/>
         </g>
       </svg>
@@ -64,6 +66,7 @@ export default {
     handleScroll () {
       this.visible = window.pageYOffset > this.visibilityHeight
     },
+    // 回到顶部
     backToTop () {
       if (this.isMoving) return
       const start = window.pageYOffset

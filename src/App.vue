@@ -10,10 +10,10 @@
           <el-main>：主要区域容器。
           <el-footer>：底栏容器。
       -->
-      <video-background v-if="this.$store.state.showVideoBackground"/>
       <el-header>
         <lover-header/>
       </el-header>
+      <video-background v-if="this.$store.state.showVideoBackground"/>
       <el-main>
         <router-view/>
       </el-main>
@@ -46,6 +46,7 @@ export default {
 
 <style scoped>
   .el-header, .el-footer {
+    background-color: #545c64;
     color: #333;
     text-align: center;
     line-height: 60px;

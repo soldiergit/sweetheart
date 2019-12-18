@@ -1,8 +1,9 @@
 <template>
   <div>
-    <div class="demo-image__lazy">
+    <div class="album">
       <!--可通过lazy开启懒加载功能，当图片滚动到可视范围内才会加载。-->
-      <el-image v-for="url in urls" :key="url" :src="url" lazy></el-image>
+      <!--通过 previewSrcList 开启预览大图的功能-->
+      <el-image v-for="url in imgList" :key="url" :src="url" :preview-src-list="imgList" lazy></el-image>
     </div>
 
     <!--可自定义按钮的样式、show/hide临界点、返回的位置  -->
@@ -15,18 +16,57 @@
 
 <script>
 import BackToTop from './BackToTop'
+import img1 from '@/assets/images/qiuXiang/img1.jpg'
+import img2 from '@/assets/images/qiuXiang/img2.jpg'
+import img3 from '@/assets/images/qiuXiang/img3.jpg'
+import img4 from '@/assets/images/qiuXiang/img4.jpg'
+import img5 from '@/assets/images/qiuXiang/img5.jpg'
+import img6 from '@/assets/images/qiuXiang/img6.jpg'
+import img7 from '@/assets/images/qiuXiang/img7.jpg'
+import img8 from '@/assets/images/qiuXiang/img8.jpg'
+import img9 from '@/assets/images/qiuXiang/img9.jpg'
+import img10 from '@/assets/images/qiuXiang/img10.jpg'
+import img11 from '@/assets/images/qiuXiang/img11.jpg'
+import img12 from '@/assets/images/qiuXiang/img12.jpg'
+import img13 from '@/assets/images/qiuXiang/img13.jpg'
+import img14 from '@/assets/images/qiuXiang/img14.jpg'
+import img15 from '@/assets/images/qiuXiang/img15.jpg'
+import img16 from '@/assets/images/qiuXiang/img16.jpg'
+import img17 from '@/assets/images/qiuXiang/img17.jpg'
+import img18 from '@/assets/images/qiuXiang/img18.jpg'
+import img19 from '@/assets/images/qiuXiang/img19.jpg'
+import img20 from '@/assets/images/qiuXiang/img20.jpg'
+import img21 from '@/assets/images/qiuXiang/img21.jpg'
+import img22 from '@/assets/images/qiuXiang/img22.jpg'
+import img23 from '@/assets/images/qiuXiang/img23.jpg'
 export default {
   name: 'Album',
   data: function () {
     return {
-      urls: [
-        'https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg',
-        'https://fuss10.elemecdn.com/1/34/19aa98b1fcb2781c4fba33d850549jpeg.jpeg',
-        'https://fuss10.elemecdn.com/0/6f/e35ff375812e6b0020b6b4e8f9583jpeg.jpeg',
-        'https://fuss10.elemecdn.com/9/bb/e27858e973f5d7d3904835f46abbdjpeg.jpeg',
-        'https://fuss10.elemecdn.com/d/e6/c4d93a3805b3ce3f323f7974e6f78jpeg.jpeg',
-        'https://fuss10.elemecdn.com/3/28/bbf893f792f03a54408b3b7a7ebf0jpeg.jpeg',
-        'https://fuss10.elemecdn.com/2/11/6535bcfb26e4c79b48ddde44f4b6fjpeg.jpeg'
+      imgList: [
+        img1,
+        img2,
+        img3,
+        img4,
+        img5,
+        img6,
+        img7,
+        img8,
+        img9,
+        img10,
+        img11,
+        img12,
+        img13,
+        img14,
+        img15,
+        img16,
+        img17,
+        img18,
+        img19,
+        img20,
+        img21,
+        img22,
+        img23
       ],
       myBackToTopStyle: {
         right: '50px',
@@ -47,7 +87,7 @@ export default {
     // 进入当前页面前，隐藏背景视频
     this.$store.commit('hideVideo')
   },
-  // 离开当前页面前，显示背景视频
+  // 离开当前页面前，显示背景视频居中
   beforeDestroy () {
     this.$store.commit('showVideo')
   }
@@ -55,4 +95,7 @@ export default {
 </script>
 
 <style scoped>
+  .album{
+    margin:0 auto; width:800px; border:1px solid #F00
+  }
 </style>

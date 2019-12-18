@@ -11,7 +11,7 @@
         <!--视频的路径必须这么写，否则视频不会播放-->
         <source src="../../assets/video/RomaticSunset.mp4" type="video/mp4"/>
         浏览器不支持 video 标签，建议升级浏览器。
-        <source src="../../assets/video/dashan.mp4" type="video/webm"/>
+        <source src="../../assets/video/RomaticSunset.mp4" type="video/webm"/>
         浏览器不支持 video 标签，建议升级浏览器。
       </video>
       <!--如果不支持video，则显示图片-->
@@ -24,7 +24,7 @@
 
 <script>
 import Qiuxiang from './Qiuxiang'
-import PATH_TO_JPEG from '@/assets/images/logo.png'
+import PATH_TO_JPEG from '@/assets/images/RomaticSunset.jpg'
 export default {
   name: 'VideoBackground',
   data: function () {
@@ -73,6 +73,7 @@ export default {
         }
       }
     }
+    // 主动触发，改变样式
     window.onresize()
   }
 }

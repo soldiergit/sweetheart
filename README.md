@@ -49,20 +49,19 @@
   3）本学期17周星期四或星期五（根据各班上课时间而定）提交，提交时需进行演示答辩。
 ```
 
-**部署项目**  
+**构建项目**  
+###### 写好Dockerfile和default.conf
 ```text
 1.下载相关依赖： npm install   
 2.编译项目： npm run build
 3.打包镜像： docker build -t soldierdocker/lover:v1.0.0 .
 3.推送到仓库： docker push soldierdocker/lover:v1.0.0
-4.下拉镜像： docker pull soldierdocker/lover:v1.0.0
-5.运行容器： docker run --name lover-vue-[datatime] -p 8003:8003 <imageId>
+```
+**部署项目**  
+```text
+1.下拉镜像： docker pull soldierdocker/lover:v1.0.0
+2.运行容器： docker run --name lover-vue-[datatime] -p 5201:5201 <imageId>
 ```
 
-#### 软件架构
-###### 软件架构说明
+#### 软件架构说明
 vue + element UI
-######技术
-vue+webpack+element-ui+vuex
-
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
