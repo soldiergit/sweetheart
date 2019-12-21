@@ -9,13 +9,13 @@
     <!--可自定义按钮的样式、show/hide临界点、返回的位置  -->
     <!--如需文字提示，可在外部添加element的<el-tooltip></el-tooltip>元素  -->
     <el-tooltip placement="top" content="回到顶部">
-      <back-to-top :custom-style="myBackToTopStyle" :visibility-height="300" :back-position="0" transition-name="fade"/>
+      <back-top :custom-style="myBackToTopStyle" :visibility-height="300" :back-position="0" transition-name="fade"/>
     </el-tooltip>
   </div>
 </template>
 
 <script>
-import BackToTop from './BackToTop'
+import BackTop from './back-top'
 import img1 from '@/assets/images/qiuXiang/img1.jpg'
 import img2 from '@/assets/images/qiuXiang/img2.jpg'
 import img3 from '@/assets/images/qiuXiang/img3.jpg'
@@ -40,7 +40,6 @@ import img21 from '@/assets/images/qiuXiang/img21.jpg'
 import img22 from '@/assets/images/qiuXiang/img22.jpg'
 import img23 from '@/assets/images/qiuXiang/img23.jpg'
 export default {
-  name: 'Album',
   data: function () {
     return {
       imgList: [
@@ -80,7 +79,7 @@ export default {
     }
   },
   components: {
-    BackToTop
+    BackTop
   },
   // created:在模板渲染成html前调用； mounted:在模板渲染成html后调用
   mounted: function () {

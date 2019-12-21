@@ -1,22 +1,26 @@
 <template>
-  <div id="content" :style="loverHeaderStyle">
+  <div id="content" :style="appHeaderStyle">
     <el-row :gutter="20">
       <!--左-->
       <el-col :span="4">
         <div class="grid-content bg-purple">
           <el-tooltip class="item" effect="dark" content="可拖拽图片" placement="top-end">
-            <!--<img :src="LoverImgUrl" class="LoverImgUrl" @mousedown="moveImg"/>-->
+            <!--<img :src="LoveImgUrl" class="LoveImgUrl" @mousedown="moveImg"/>-->
             <img
               draggable="true"
-              v-if="LoverImgUrl"
-              v-on:dragstart="dragStart(LoverImgUrl)"
-              :src="LoverImgUrl" class="LoverImg">
+              v-if="loveImgUrl"
+              v-on:dragstart="dragStart(loveImgUrl)"
+              :src="loveImgUrl" class="LoveImg">
           </el-tooltip>
-          <span id="loverIcon">L<i class="el-icon-love1"></i>VER</span>
+          <span id="loveIcon">L<i class="el-icon-love1"></i>VE</span>
         </div>
       </el-col>
-      <!--中-->
-      <el-col :span="18">
+      <!--中1-->
+      <el-col :span="10">
+        <div class="grid-content"></div>
+      </el-col>
+      <!--中2-->
+      <el-col :span="8">
         <div class="nav">
           <el-menu
             :default-active="activeIndex"
@@ -26,29 +30,24 @@
             background-color="#545c64"
             text-color="#fff"
             active-text-color="#ffd04b">
-            <template v-if="this.$store.state.logonStatus">
-              <el-submenu index="1">
-                  <template slot="title"><span class="menuText"><i class="el-icon-user-solid"></i>用户</span></template>
-                  <el-menu-item index="1-2" @click="logoutSubmit()">
-                    <span class="menuText"><i class="el-icon-logout"></i>退出</span>
-                  </el-menu-item>
-              </el-submenu>
-            </template>
-            <template v-else>
-              <el-menu-item index="1-1" @click="loginSubmit()"><span class="menuText"><i class="el-icon-denglu"></i>登录</span></el-menu-item>
-            </template>
-            <el-submenu index="2">
-              <!-- TODO:音频 -->
-              <audio :src="audioUrl" id="eventAudio"></audio>
-              <template slot="title"><i class="el-icon-s-tools"></i>设置</template>
-              <el-menu-item index="2-1" @click="audioPlay">开启音乐</el-menu-item>
-              <el-menu-item index="2-2" @click="audioStop">关闭音乐</el-menu-item>
-            </el-submenu>
+            <el-menu-item index="1"><a href="#" @click="home"><i class="el-icon-s-home"></i>首页</a></el-menu-item>
+            <el-menu-item index="2"><a href="#" @click="album"><i class="el-icon-picture"></i>相册</a></el-menu-item>
             <el-menu-item index="3"><a href="#" @click="aboutUsVisible=true">
-              <el-avatar shape="square" size="small" :src="avatarUrl"></el-avatar>关于我们</a>
+              <el-avatar shape="square" size="small" :src="avatarImgUrl"></el-avatar>关于我们</a>
             </el-menu-item>
-            <el-menu-item index="4"><a href="#" @click="album"><i class="el-icon-picture"></i>相册</a></el-menu-item>
-            <el-menu-item index="5"><a href="#" @click="home"><i class="el-icon-s-home"></i>首页</a></el-menu-item>
+            <el-submenu index="4">
+              <!-- TODO:音频 -->
+              <audio :src="backgroundAudioUrl" id="eventAudio"></audio>
+              <template slot="title"><i class="el-icon-s-tools"></i>设置</template>
+              <el-menu-item index="4-1" @click="audioPlay">开启音乐</el-menu-item>
+              <el-menu-item index="4-2" @click="audioStop">关闭音乐</el-menu-item>
+            </el-submenu>
+            <el-submenu index="5">
+              <template slot="title"><span class="menuText"><i class="el-icon-user-solid"></i>用户</span></template>
+              <el-menu-item index="5-1" @click="logoutSubmit()">
+                <span class="menuText"><i class="el-icon-logout"></i>退出</span>
+              </el-menu-item>
+            </el-submenu>
           </el-menu>
         </div>
       </el-col>
@@ -64,13 +63,14 @@
                 :action="actionUrl"
                 :show-file-list="false"
                 accept="image/jpeg,image/png,image/bmp">
-                <img v-if="DragImgUrl" :src="DragImgUrl" class="LoverImg">
+                <img v-if="dragImgUrl" :src="dragImgUrl" class="LoveImg">
               </el-upload>
             </el-tooltip>
           </div>
         </div>
       </el-col>
     </el-row>
+
     <!--Drawer 抽屉:https://element.eleme.cn/#/zh-CN/component/drawer-->
     <el-drawer
       title="关于我们!"
@@ -81,66 +81,65 @@
       <!--direction：打开方向-->
       <about-us/>
     </el-drawer>
-    <!--登录页面-->
-    <login v-if="loginVisible" ref="login"></login>
   </div>
 </template>
 <script>
+import AboutUs from './sweetheart/about-us/about-us'
+import LoveImg from '@/assets/images/love.png'
+import BackgroundAudio from '@/assets/media/Taylor SwiftEd Sheeran - Everything Has Changed [mqms2] 1.mp3'
+import AvatarImg from '@/assets/images/RomaticSunset.jpg'
 
-import Login from './login'
-import LoverImgUrl from '@/assets/images/lover.png'
-import audioUrl from '@/assets/audio/Taylor SwiftEd Sheeran - Everything Has Changed [mqms2] 1.mp3'
-import AboutUs from '../lover/AboutUs'
-import AvatarUrl from '@/assets/images/RomaticSunset.jpg'
 export default {
   data () {
     return {
-      loverHeaderStyle: '',
+      appHeaderStyle: '',
+      loveImgUrl: LoveImg,
+      activeIndex: '1',
+      backgroundAudioUrl: BackgroundAudio,
+      aboutUsVisible: false,
+      avatarImgUrl: AvatarImg,
       loginVisible: false,
       drawer: false,
       dialogVisible: false,
-      activeIndex: '1',
-      LoverImgUrl: LoverImgUrl,
-      DragImgUrl: '',
-      actionUrl: '',
-      audioUrl: audioUrl,
-      aboutUsVisible: false,
-      avatarUrl: AvatarUrl
+      dragImgUrl: '',
+      actionUrl: ''
     }
   },
   components: {
-    Login,
-    LoverImgUrl,
-    audioUrl,
-    AboutUs
+    AboutUs,
+    LoveImg
   },
   methods: {
     handleSelect () {},
+    // 首页
     home () {
-      this.$router.push('/')
+      this.$router.push({name: 'Home'})
     },
+    // 相册列表
     album () {
-      this.$router.push('/album')
+      this.$router.push({name: 'Album'})
     },
+    // 开启音乐
     audioPlay () {
-      let btnAdo = document.getElementById('eventAudio')
-      btnAdo.play()
+      let backgroundMusic = document.getElementById('eventAudio')
+      backgroundMusic.play()
     },
+    // 关闭音乐
     audioStop () {
-      let btnAdo = document.getElementById('eventAudio')
-      btnAdo.pause()
+      let backgroundMusic = document.getElementById('eventAudio')
+      backgroundMusic.pause()
     },
+    // 点击登陆
     loginSubmit () {
-      var o = document.getElementById('content')
-      var w = o.clientWidth || o.offsetWidth
-      console.log(w)
       this.loginVisible = true
       this.$nextTick(() => {
         this.$refs.login.init()
       })
     },
+    // 退出登陆
     logoutSubmit () {
       this.$store.commit('logout')
+      this.$router.push('/')
     },
     // 图片被拖拽时执行
     dragStart (item) {
@@ -148,8 +147,8 @@ export default {
     // 图片放下时执行
     dropImg (e) {
       e.preventDefault()
-      this.LoverImgUrl = ''
-      this.DragImgUrl = LoverImgUrl
+      this.loveImgUrl = ''
+      this.dragImgUrl = LoveImg
     },
     // 图标到达被放置的区域时会一直执行
     aboveTarget (e) {
@@ -188,7 +187,7 @@ export default {
     window.onresize = () => {
       // 固定导航蓝
       const windowWidth = document.body.clientWidth
-      this.loverHeaderStyle = {
+      this.appHeaderStyle = {
         width: windowWidth + 'px',
         'position': 'fixed',
         'top': 0,
@@ -206,50 +205,32 @@ export default {
   #content{
     background-color: rgb(84, 92, 100);
   }
-  .LoverImg{
+  .LoveImg{
     width: 40px;
     height: 40px;
-    /*垂直居中*/
     display: inline-block; vertical-align: middle;
     /*position: relative;*/
   }
-  #loverIcon{
+  #loveIcon{
     float: right;
     font-size: 18px;
     font-weight: bolder;/*更粗*/
     font-style: italic;/*斜体*/
     font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
     color: white;
-    /*https://www.w3.org/Style/Examples/007/text-shadow*/
     text-shadow: 0.2em 0.5em 0.1em #000000;/*距离左、距离上、开始显示阴影效果，同时阴影大小为、阴影颜色*/
   }
-  #loverIcon .el-icon-love1{
+  #loveIcon .el-icon-love1{
     color: #F56C6C;
   }
   .menuText:hover{
     color: #67C23A;
   }
-  .el-menu-item{
-    float: right;
-  }
-  .el-submenu{
-    float: right;
+  .grid-content {
+    border-radius: 4px;
+    min-height: 36px;
   }
   .el-menu.el-menu--horizontal {
-    border-bottom: solid 0px #e6e6e6;
+    border-bottom: solid 0 #e6e6e6;
   }
-  /*>>>.el-drawer__header {*/
-    /*-webkit-box-align: center;*/
-    /*-ms-flex-align: center;*/
-    /*align-items: center;*/
-    /*color: #72767b;*/
-    /*display: -webkit-box;*/
-    /*display: -ms-flexbox;*/
-    /*display: flex;*/
-    /*margin-bottom: 0px;*/
-    /*padding: 0px 0px ;*/
-  /*}*/
-  /*>>>.el-drawer {*/
-    /*background-color: rgb(84, 92, 100);*/
-  /*}*/
 </style>

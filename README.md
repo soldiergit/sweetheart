@@ -1,4 +1,4 @@
-# lover
+# sweetheart
 
 > Ms.Li and I
 
@@ -52,16 +52,40 @@
 **构建项目**  
 ###### 写好Dockerfile和default.conf
 ```text
+启动docker： service docker start
+进入管理员账号：su
 1.下载相关依赖： npm install   
 2.编译项目： npm run build
-3.打包镜像： docker build -t soldierdocker/lover:v1.0.0 .
-3.推送到仓库： docker push soldierdocker/lover:v1.0.0
+3.打包镜像： docker build -t soldierdocker/sweetheart:v1.0.0 .
+3.推送到仓库： docker push soldierdocker/sweetheart:v1.0.0
 ```
 **部署项目**  
 ```text
-1.下拉镜像： docker pull soldierdocker/lover:v1.0.0
-2.运行容器： docker run --name lover-vue-[datatime] -p 5201:5201 <imageId>
+登录服务器：ssh 116.62.48.112
+1.下拉镜像： docker pull soldierdocker/sweetheart:v1.0.0
+2.运行容器： docker run -d --name sweetheart-vue-[datatime] -p 5201:5201 <imageId>
 ```
+### 使用阿里云镜像服务部署
+#####本地构建项目
+```text
+启动docker： service docker start
+进入管理员账号：su
+1.下载相关依赖： npm install   
+2.编译项目： npm run build
+3.打包镜像： docker build -t registry.cn-hangzhou.aliyuncs.com/soldier-hub/sweetheart:v1.0.0 .
+4.登录： docker login --username=soldier_ali registry.cn-hangzhou.aliyuncs.com
+5.推送：docker push registry.cn-hangzhou.aliyuncs.com/soldier-hub/sweetheart:[镜像版本号]
+```
+#####部署项目
+```text
+登录服务器：ssh 116.62.48.112
+1.登录： docker login --username=soldier_ali registry.cn-hangzhou.aliyuncs.com
+1.下拉镜像： docker pull registry.cn-hangzhou.aliyuncs.com/soldier-hub/sweetheart:[镜像版本号]
+2.运行容器： docker run -d --name sweetheart-vue-[datatime] -p 5200:5200 <imageId>
+```
+**后面的5200是default.conf里设置的，前面的5200是你要运行的、会映射到后面那个的端口上**
 
-#### 软件架构说明
+####软件架构说明
 vue + element UI
+
+

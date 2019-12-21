@@ -2,40 +2,37 @@
   <!--transition 进入(fade)和移除(slide-fade)动画-->
   <transition name="fade">
     <div id="app">
-      <!--
-        https://element.eleme.cn/#/zh-CN/component/container
-        el-container: 用于布局的容器组件
-          <el-header>：顶栏容器。
-          <el-aside>：侧边栏容器。
-          <el-main>：主要区域容器。
-          <el-footer>：底栏容器。
-      -->
-      <el-header>
-        <lover-header/>
-      </el-header>
-      <video-background v-if="this.$store.state.showVideoBackground"/>
-      <el-main>
+      <template v-if="this.$store.state.logonStatus">
+        <el-header>
+          <main-header/>
+        </el-header>
+        <main-background v-if="this.$store.state.showVideoBackground"/>
+        <el-main>
+          <router-view/>
+        </el-main>
+        <el-footer>
+          <main-footer/>
+        </el-footer>
+      </template>
+      <template v-else>
         <router-view/>
-      </el-main>
-      <el-footer>
-        <lover-footer/>
-      </el-footer>
+      </template>
     </div>
   </transition>
 </template>
 
 <script>
-import VideoBackground from './components/background/VideoBackground'
-import LoverHeader from './components/common/header'
-import LoverFooter from './components/common/footer'
-import LoverAside from './components/common/aside'
+import SweetheartIndex from './views/sweetheart/index'
+import mainBackground from './views/main-background'
+import MainHeader from './views/main-header'
+import MainFooter from './views/main-footer'
+
 export default {
-  name: 'App',
   components: {
-    VideoBackground,
-    LoverHeader,
-    LoverAside,
-    LoverFooter
+    SweetheartIndex,
+    mainBackground,
+    MainHeader,
+    MainFooter
   },
   data: function () {
     return {
@@ -44,6 +41,7 @@ export default {
 }
 </script>
 
+<!--在标签上添加 scoped 属性后则变成了局部引用-->
 <style scoped>
   .el-header, .el-footer {
     background-color: #545c64;

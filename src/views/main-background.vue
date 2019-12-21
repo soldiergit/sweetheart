@@ -9,9 +9,9 @@
       <!--autoplay：自动播放 loop：当媒介文件完成播放后再次开始播放 muted：静音  v-on:指令监听DOM事件，并在触发时运行一些JavaScript代码  -->
       <video :style="fixStyle" autoplay loop muted class="fillWidth" v-on:canplay="canplay">
         <!--视频的路径必须这么写，否则视频不会播放-->
-        <source src="../../assets/video/RomaticSunset.mp4" type="video/mp4"/>
+        <source src="../assets/media/RomaticSunset.mp4" type="video/mp4"/>
         浏览器不支持 video 标签，建议升级浏览器。
-        <source src="../../assets/video/RomaticSunset.mp4" type="video/webm"/>
+        <source src="../assets/media/RomaticSunset.mp4" type="video/webm"/>
         浏览器不支持 video 标签，建议升级浏览器。
       </video>
       <!--如果不支持video，则显示图片-->
@@ -23,10 +23,9 @@
 </template>
 
 <script>
-import Qiuxiang from './Qiuxiang'
+import Qiuxiang from './main-filter'
 import PATH_TO_JPEG from '@/assets/images/RomaticSunset.jpg'
 export default {
-  name: 'VideoBackground',
   data: function () {
     return {
       PATH_TO_JPEG: PATH_TO_JPEG,

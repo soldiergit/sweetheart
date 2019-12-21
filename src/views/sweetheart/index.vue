@@ -38,17 +38,17 @@
       </div>
     </div>
     <!--<div id="footer">-->
-      <!--<ul>-->
-        <!--<li class="twitter">-->
-          <!--<a href="#">twitter</a>-->
-        <!--</li>-->
-        <!--<li class="facebook">-->
-          <!--<a href="#">facebook</a>-->
-        <!--</li>-->
-        <!--<li class="googleplus">-->
-          <!--<a href="#">googleplus</a>-->
-        <!--</li>-->
-      <!--</ul>-->
+    <!--<ul>-->
+    <!--<li class="twitter">-->
+    <!--<a href="#">twitter</a>-->
+    <!--</li>-->
+    <!--<li class="facebook">-->
+    <!--<a href="#">facebook</a>-->
+    <!--</li>-->
+    <!--<li class="googleplus">-->
+    <!--<a href="#">googleplus</a>-->
+    <!--</li>-->
+    <!--</ul>-->
     <!--</div>-->
   </div>
 </template>
@@ -66,6 +66,8 @@ import SheSmallImg from '@/assets/images/qiuXiang/SHE.png'
 
 export default {
   name: 'index',
+  components: {
+  },
   data: function () {
     return {
       carouselImg: [
@@ -83,7 +85,7 @@ export default {
       bodyText: 'mine',
       describeHer: '山无陵，江水为竭，冬雷震震，夏雨雪，天地合，乃敢与君绝！',
       oath: 'I love you not because of who you are, but because of who I am when I am with you.' +
-        'To the world you may be one person, but to one person you may be the world. ',
+          'To the world you may be one person, but to one person you may be the world. ',
       SheSmallImg: SheSmallImg
     }
   },
