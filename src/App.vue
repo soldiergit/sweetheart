@@ -3,16 +3,12 @@
   <transition name="fade">
     <div id="app">
       <template v-if="this.$store.state.logonStatus">
-        <el-header>
-          <main-header/>
-        </el-header>
-        <main-background v-if="this.$store.state.showVideoBackground"/>
-        <el-main>
-          <router-view/>
-        </el-main>
-        <el-footer>
-          <main-footer/>
-        </el-footer>
+        <el-container>
+          <el-header><main-header/></el-header>
+          <main-background v-if="this.$store.state.showVideoBackground"/>
+          <el-main><router-view/></el-main>
+          <el-footer><main-footer/></el-footer>
+        </el-container>
       </template>
       <template v-else>
         <router-view/>
@@ -22,14 +18,12 @@
 </template>
 
 <script>
-import SweetheartIndex from './views/sweetheart/index'
 import mainBackground from './views/main-background'
 import MainHeader from './views/main-header'
 import MainFooter from './views/main-footer'
 
 export default {
   components: {
-    SweetheartIndex,
     mainBackground,
     MainHeader,
     MainFooter
@@ -49,12 +43,23 @@ export default {
     text-align: center;
     line-height: 60px;
   }
+  .el-main {
+    /*background-color: #E9EEF3;*/
+    color: #333;
+    text-align: center;
+    line-height: 160px;
+  }
 
-  .el-footer {
-    padding: 0px;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-    -ms-flex-negative: 0;
-    flex-shrink: 0;
+  body > .el-container {
+    margin-bottom: 40px;
+  }
+
+  .el-container:nth-child(5) .el-aside,
+  .el-container:nth-child(6) .el-aside {
+    line-height: 260px;
+  }
+
+  .el-container:nth-child(7) .el-aside {
+    line-height: 320px;
   }
 </style>

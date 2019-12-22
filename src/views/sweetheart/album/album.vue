@@ -3,7 +3,7 @@
     <div class="album">
       <!--可通过lazy开启懒加载功能，当图片滚动到可视范围内才会加载。-->
       <!--通过 previewSrcList 开启预览大图的功能-->
-      <el-image v-for="url in imgList" :key="url" :src="url" :preview-src-list="imgList" lazy></el-image>
+      <el-image v-for="url in imgList" :key="url" :src="url" :preview-src-list="imgList" :lazy="true"></el-image>
     </div>
 
     <!--可自定义按钮的样式、show/hide临界点、返回的位置  -->
@@ -95,6 +95,7 @@ export default {
 
 <style scoped>
   .album{
-    margin:0 auto; width:800px; border:1px solid #F00
+    margin:0 auto; width:800px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04)
   }
 </style>

@@ -11,7 +11,6 @@ export default {
 
 <style scoped>
 div {
-  background: rgb(84, 92, 100);
   margin: 0;
 }
 </style>

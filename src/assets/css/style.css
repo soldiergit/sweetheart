@@ -73,15 +73,6 @@ body {
 #header div.navigation ul li a:hover {
   color: #9c1119;
 }
-#body .header {
-  background: #c0b4a2 url(~@/assets/images/bg-content-bottom.gif) no-repeat bottom center;
-  margin: 0 0 40px 0;
-  padding: 5px 30px 33px;
-  text-align: center;
-}
-#body .header img {
-  display: block;
-}
 #body .body {
   margin: 0;
   padding: 0;
@@ -107,10 +98,10 @@ body {
   text-decoration: none;
 }
 #body .body ul {
-  background: url(~@/assets/images/interface.png) no-repeat 0 322px;
+  background: no-repeat 0 322px;
   margin: 0;
   overflow: hidden;
-  padding: 30px 0 62px;
+  padding: 30px 0 20px;
 }
 #body .body ul li {
   float: left;
@@ -132,7 +123,7 @@ body {
 #body .footer {
   margin: 0;
   overflow: hidden;
-  padding: 80px 0 0;
+  padding: 0 0 0;
 }
 #body .footer div {
   background: url(~@/assets/images/interface.png) no-repeat 0 -143px;

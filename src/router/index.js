@@ -21,6 +21,9 @@ export default new Router({
     {
       path: '/album', // 相册
       name: 'Album',
+      meta: {
+        requireAuth: true // 判断是否需要登录
+      },
       component: resolve => require(['@/views/sweetheart/album/album'], resolve)
     }
   ]

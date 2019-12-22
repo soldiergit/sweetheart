@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import Train from './css3Animation/Train/Train'
+import Train from '../../common/animation/train/train'
 export default {
   name: 'AboutUs',
   data: function () {

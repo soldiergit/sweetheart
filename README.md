@@ -70,9 +70,9 @@
 ```text
 启动docker： service docker start
 进入管理员账号：su
-1.下载相关依赖： npm install   
+1.下载相关依赖： npm install
 2.编译项目： npm run build
-3.打包镜像： docker build -t registry.cn-hangzhou.aliyuncs.com/soldier-hub/sweetheart:v1.0.0 .
+3.打包镜像： docker build -t registry.cn-hangzhou.aliyuncs.com/soldier-hub/sweetheart:[镜像版本号] .
 4.登录： docker login --username=soldier_ali registry.cn-hangzhou.aliyuncs.com
 5.推送：docker push registry.cn-hangzhou.aliyuncs.com/soldier-hub/sweetheart:[镜像版本号]
 ```
@@ -87,5 +87,7 @@
 
 ####软件架构说明
 vue + element UI
+#####组件
+vue、webpack、element UI、router、vuex、Iconfont-阿里巴巴矢量图标库
 
 

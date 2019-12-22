@@ -16,10 +16,10 @@ const store = new Vuex.Store({
     getStatus (state) { // 方法名随意,主要是来承载变化的logonStatus的值
       return state.logonStatus
     },
-    getVideoBackground (state) { // 方法名随意,主要是来承载变化的logonStatus的值
+    getVideoBackground (state) {
       return state.showVideoBackground
     },
-    getChangedNum () { // 方法名随意,主要是用来承载变化的changableNum的值
+    getChangedNum () {
       return state.changableNum
     }
   },
