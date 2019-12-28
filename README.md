@@ -88,6 +88,6 @@
 ####软件架构说明
 vue + element UI
 #####组件
-vue、webpack、element UI、router、vuex、Iconfont-阿里巴巴矢量图标库
+vue、webpack、element UI、router、vuex、Iconfont-阿里巴巴矢量图标库、axios、vue-waterfall-easy 2.x
 
 

@@ -11,7 +11,7 @@
         </el-container>
       </template>
       <template v-else>
-        <router-view/>
+        <login/>
       </template>
     </div>
   </transition>
@@ -21,12 +21,14 @@
 import mainBackground from './views/main-background'
 import MainHeader from './views/main-header'
 import MainFooter from './views/main-footer'
+import Login from './views/common/login'
 
 export default {
   components: {
     mainBackground,
     MainHeader,
-    MainFooter
+    MainFooter,
+    Login
   },
   data: function () {
     return {

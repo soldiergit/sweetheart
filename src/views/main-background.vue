@@ -86,7 +86,8 @@ export default {
     overflow: hidden;
   }
 
-  .video-container .poster img{
+  .video-container .poster img,
+  .video-container video {
     z-index: 0;
     position: absolute;
   }
@@ -95,10 +96,5 @@ export default {
     z-index: 1;
     position: absolute;
     background: rgba(0, 0, 0, 0.4);
-    width: 100%;
-  }
-
-  .fillWidth {
-    width: 100%;
   }
 </style>

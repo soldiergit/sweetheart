@@ -10,7 +10,6 @@
       <el-col :span="16">
         <p>有些路很远，走下去会很累。可是，不走，会后悔。</p>
         <p>能和你拍张照片嘛？因为我想证明天使是存在的！</p>
-        <p></p>
       </el-col>
     </el-row>
   </el-dialog>
@@ -40,11 +39,14 @@ export default {
       this.$notify.error({
         title: '提示',
         message: '其实我想和你一起也野炊烧烤一次，哈哈。'
-        // message: h('i', { style: 'color: teal'}, '其实我想和你一起也野炊烧烤一次，哈哈。')
       })
     }
   }
 }
 </script>
 <style scoped>
+  .txt p:first-letter{
+    color: #FFFFFF;
+    font-size:150%;
+  }
 </style>

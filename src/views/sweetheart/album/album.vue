@@ -1,101 +1,127 @@
 <template>
   <div>
-    <div class="album">
-      <!--可通过lazy开启懒加载功能，当图片滚动到可视范围内才会加载。-->
-      <!--通过 previewSrcList 开启预览大图的功能-->
-      <el-image v-for="url in imgList" :key="url" :src="url" :preview-src-list="imgList" :lazy="true"></el-image>
+    <!--瀑布流图片-->
+    <div id="albumContent">
+      <div id="content">
+        <vue-waterfall-easy :imgsArr="imgsArr" @scrollReachBottom="getData">
+          <div class="img-info" slot-scope="props">
+            <p class="some-info">第{{props.index+1}}张图片</p>
+            <p class="some-info">{{props.value.info}}</p>
+          </div>
+        </vue-waterfall-easy>
+      </div>
     </div>
-
-    <!--可自定义按钮的样式、show/hide临界点、返回的位置  -->
-    <!--如需文字提示，可在外部添加element的<el-tooltip></el-tooltip>元素  -->
-    <el-tooltip placement="top" content="回到顶部">
-      <back-top :custom-style="myBackToTopStyle" :visibility-height="300" :back-position="0" transition-name="fade"/>
-    </el-tooltip>
   </div>
 </template>
 
 <script>
-import BackTop from './back-top'
-import img1 from '@/assets/images/qiuXiang/img1.jpg'
-import img2 from '@/assets/images/qiuXiang/img2.jpg'
-import img3 from '@/assets/images/qiuXiang/img3.jpg'
-import img4 from '@/assets/images/qiuXiang/img4.jpg'
-import img5 from '@/assets/images/qiuXiang/img5.jpg'
-import img6 from '@/assets/images/qiuXiang/img6.jpg'
-import img7 from '@/assets/images/qiuXiang/img7.jpg'
-import img8 from '@/assets/images/qiuXiang/img8.jpg'
-import img9 from '@/assets/images/qiuXiang/img9.jpg'
-import img10 from '@/assets/images/qiuXiang/img10.jpg'
-import img11 from '@/assets/images/qiuXiang/img11.jpg'
-import img12 from '@/assets/images/qiuXiang/img12.jpg'
-import img13 from '@/assets/images/qiuXiang/img13.jpg'
-import img14 from '@/assets/images/qiuXiang/img14.jpg'
-import img15 from '@/assets/images/qiuXiang/img15.jpg'
-import img16 from '@/assets/images/qiuXiang/img16.jpg'
-import img17 from '@/assets/images/qiuXiang/img17.jpg'
-import img18 from '@/assets/images/qiuXiang/img18.jpg'
-import img19 from '@/assets/images/qiuXiang/img19.jpg'
-import img20 from '@/assets/images/qiuXiang/img20.jpg'
-import img21 from '@/assets/images/qiuXiang/img21.jpg'
-import img22 from '@/assets/images/qiuXiang/img22.jpg'
-import img23 from '@/assets/images/qiuXiang/img23.jpg'
+import vueWaterfallEasy from './vue-waterfall-easy/vue-waterfall-easy.vue'
+import axios from 'axios'
 export default {
-  data: function () {
+  name: 'album',
+  data () {
     return {
-      imgList: [
-        img1,
-        img2,
-        img3,
-        img4,
-        img5,
-        img6,
-        img7,
-        img8,
-        img9,
-        img10,
-        img11,
-        img12,
-        img13,
-        img14,
-        img15,
-        img16,
-        img17,
-        img18,
-        img19,
-        img20,
-        img21,
-        img22,
-        img23
-      ],
-      myBackToTopStyle: {
-        right: '50px',
-        bottom: '50px',
-        width: '40px',
-        height: '40px',
-        borderRadius: '4px',
-        lineHeight: '45px', // 请保持与高度一致以垂直居中
-        background: '#e7eaf1'// 按钮的背景颜色
-      }
+      imgsArr: [],
+      group: 0, // 当前加载的加载图片的次数
+      pullDownDistance: 0
     }
   },
   components: {
-    BackTop
+    vueWaterfallEasy
+  },
+  methods: {
+    getData () {
+      axios.get('./static/mock/album-data.json?group=' + this.group) // 真实环境中，后端会根据参数group返回新的图片数组，这里我用一个静态json文件模拟
+        .then(res => {
+          this.group++
+          if (this.group === 10) { // 模拟已经无新数据，显示 slot="waterfall-over"
+            this.$refs.waterfall.waterfallOver()
+            return
+          }
+          this.imgsArr = this.imgsArr.concat(res.data)
+        })
+    },
+    clickFn (event, { index, value }) {
+      // event.preventDefault()
+      if (event.target.tagName.toLowerCase() === 'img') {
+        console.log('img clicked', index, value)
+      }
+    },
+    imgErrorFn (imgItem) {
+      console.log('图片加载错误', imgItem)
+    },
+    changeImgArr () {
+      axios.get('./static/mock/album-data-change.json') // 真实环境中，后端会根据参数group返回新的图片数组，这里我用一个静态json文件模拟
+        .then(res => {
+          this.imgsArr = res.data
+        })
+    },
+    pullDownMove (pullDownDistance) {
+      // console.log('pullDownDistance', pullDownDistance)
+      this.pullDownDistance = pullDownDistance
+    },
+    pullDownEnd (pullDownDistance) {
+      console.log('pullDownEnd')
+      if (this.pullDownDistance > 50) {
+        alert('下拉刷新')
+      }
+      this.pullDownDistance = 0
+    }
+  },
+  created () {
+    this.getData()
+
+    // 删除某个卡片
+    // setTimeout(()=>{
+    //   this.imgsArr.splice(1,1)
+    // },2000)
   },
   // created:在模板渲染成html前调用； mounted:在模板渲染成html后调用
   mounted: function () {
     // 进入当前页面前，隐藏背景视频
     this.$store.commit('hideVideo')
   },
-  // 离开当前页面前，显示背景视频居中
   beforeDestroy () {
+    // 离开当前页面前，显示背景视频
     this.$store.commit('showVideo')
   }
 }
 </script>
 
+<!--sass转css网址 https://www.sassmeister.com/-->
 <style scoped>
-  .album{
-    margin:0 auto; width:800px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04)
+  * {
+    margin: 0;
+    padding: 0;
+  }
+
+  a {
+    color: #000;
+    text-decoration: none;
+  }
+  a:active {
+    color: #000;
+  }
+  #albumContent {
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    bottom: 20px
+  }
+
+  #albumContent #content {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+  }
+
+  #albumContent {
+    overflow: auto;
+    position: relative;
+  }
+  #albumContent .some-info {
+    line-height: 1.6;
+    text-align: center;
   }
 </style>
