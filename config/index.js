@@ -50,6 +50,8 @@ module.exports = {
     // Paths
     assetsRoot: path.resolve(__dirname, '../dist'),
     assetsSubDirectory: 'static',
+    //  不是用docker部署第一步：将build下的assetsPublicPath的val改为./，docker时改为/(第二步在src/router/index.js)
+    // assetsPublicPath: './',
     assetsPublicPath: '/',
 
     /**
